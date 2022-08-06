@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script type="text/javascript" src="//cdn.embed.ly/player-0.1.0.min.js"></script>
+	<style>
+		.app {
+			height: 100vh;
+			width: 100vw;
+		}
+		.quiz-composer {
+			height: 100%;
+			width: 100%;
+		}
+	</style>
+	<title>Test Playerjs</title>
+</head>
+<body>
+	 <main class="app">
+	 	<button onclick="playVideo()">play</button>
+	 	<button onclick="pauseVideo()">pause</button>
+	 </main>
+	 <script>
+	 	const iframe = document.createElement('iframe');
+	 	iframe.frameBorder = 0;
+	 	iframe.allow="autoplay; fullscreen";
+	 	iframe.className = 'quiz-composer';
+		iframe.src = 'http://localhost:8002/';
+		// iframe.src = 'https://echolabstech.github.io/quiz-deployment/?quiz_id=mYLYZgqs594VtAxk0KCd';
+
+		const main = document.querySelector('.app');
+		main.appendChild(iframe);
+
+		const player = new playerjs.Player(iframe);
+		player.on('play', () => {
+	    console.log('page - play video');
+	  });
+
+	  player.on('pause', () => {
+	    console.log('page - pause video');
+	  });
+
+	  player.getDuration(duration => console.log(`page - video duration: ${duration}`));
+
+	  if (player.supports('method', 'mute')) {
+	    player.mute();
+	  }
+
+	  player.on('ready', () => {
+	  	player.play();
+	  });
+
+	  const playVideo = () => player.play();
+	  const pauseVideo = () => player.pause();
+	 </script>
+</body>
+</html>
