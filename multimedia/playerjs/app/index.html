@@ -22,8 +22,6 @@
 	 	<button onclick="pause()">pause</button>
 	 </main>
 	 <script>
-		const quizSrc = 'https://echolabstech.github.io/quiz-deployment/?quiz_id=mYLYZgqs594VtAxk0KCd';
-
 	 	const video = document.createElement('iframe');
 	 	video.frameBorder = 0;
 	 	video.allow="autoplay; fullscreen";
@@ -36,8 +34,16 @@
 	 	audio.className = 'quiz-composer';
 		audio.src = 'http://localhost:8003/';
 
+		const quiz = document.createElement('iframe');
+	 	quiz.frameBorder = 0;
+	 	quiz.allow="autoplay; fullscreen";
+	 	quiz.className = 'quiz-composer';
+	 	const remoteSrc = 'https://echolabstech.github.io/quiz-deployment/?quiz_id=mYLYZgqs594VtAxk0KCd';
+		const localSrc = 'http://localhost:8000/quiz-deployment/?quiz_id=mYLYZgqs594VtAxk0KCd';
+		quiz.src = localSrc;
+
 		const main = document.querySelector('.app');
-		const media = video;
+		const media = quiz;
 		main.appendChild(media);
 
 		const player = new playerjs.Player(media);
