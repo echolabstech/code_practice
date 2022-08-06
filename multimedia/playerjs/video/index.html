@@ -39,6 +39,16 @@
 			  console.log('iframe - pause video');
 			});
 
+			video.addEventListener('playing', function(){
+			  receiver.emit('play');
+			  console.log('iframe - play video');
+			});
+
+			video.addEventListener('pause', function(){
+			  receiver.emit('pause');
+			  console.log('iframe - pause video');
+			});
+
 			video.addEventListener('canplay', (event) => {
 			  console.log('Video can start, but not sure it will play through.');
 				receiver.ready();

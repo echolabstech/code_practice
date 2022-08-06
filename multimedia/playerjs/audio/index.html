@@ -39,6 +39,16 @@
 			  console.log('iframe - pause audio');
 			});
 
+			audio.addEventListener('playing', function(){
+			  receiver.emit('play');
+			  console.log('iframe - play audio');
+			});
+
+			audio.addEventListener('pause', function(){
+			  receiver.emit('pause');
+			  console.log('iframe - pause audio');
+			});
+
 			audio.addEventListener('canplay', (event) => {
 			  console.log('Audio can start, but not sure it will play through.');
 				receiver.ready();
