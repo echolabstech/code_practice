@@ -18,30 +18,38 @@
 </head>
 <body>
 	 <main class="app">
-	 	<button onclick="playVideo()">play</button>
-	 	<button onclick="pauseVideo()">pause</button>
+	 	<button onclick="play()">play</button>
+	 	<button onclick="pause()">pause</button>
 	 </main>
 	 <script>
-	 	const iframe = document.createElement('iframe');
-	 	iframe.frameBorder = 0;
-	 	iframe.allow="autoplay; fullscreen";
-	 	iframe.className = 'quiz-composer';
-		iframe.src = 'http://localhost:8002/';
-		// iframe.src = 'https://echolabstech.github.io/quiz-deployment/?quiz_id=mYLYZgqs594VtAxk0KCd';
+		const quizSrc = 'https://echolabstech.github.io/quiz-deployment/?quiz_id=mYLYZgqs594VtAxk0KCd';
+
+	 	const video = document.createElement('iframe');
+	 	video.frameBorder = 0;
+	 	video.allow="autoplay; fullscreen";
+	 	video.className = 'quiz-composer';
+		video.src = 'http://localhost:8002/';
+
+		const audio = document.createElement('iframe');
+	 	audio.frameBorder = 0;
+	 	audio.allow="autoplay; fullscreen";
+	 	audio.className = 'quiz-composer';
+		audio.src = 'http://localhost:8003/';
 
 		const main = document.querySelector('.app');
-		main.appendChild(iframe);
+		const media = video;
+		main.appendChild(media);
 
-		const player = new playerjs.Player(iframe);
+		const player = new playerjs.Player(media);
 		player.on('play', () => {
-	    console.log('page - play video');
+	    console.log('page - play');
 	  });
 
 	  player.on('pause', () => {
-	    console.log('page - pause video');
+	    console.log('page - pause');
 	  });
 
-	  player.getDuration(duration => console.log(`page - video duration: ${duration}`));
+	  player.getDuration(duration => console.log(`page - duration: ${duration}`));
 
 	  if (player.supports('method', 'mute')) {
 	    player.mute();
@@ -51,8 +59,8 @@
 	  	player.play();
 	  });
 
-	  const playVideo = () => player.play();
-	  const pauseVideo = () => player.pause();
+	  const play = () => player.play();
+	  const pause = () => player.pause();
 	 </script>
 </body>
 </html>
