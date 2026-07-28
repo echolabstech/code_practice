@@ -34,6 +34,14 @@ class BoundedQueue:
     def is_empty(self) -> bool:
         return len(self._storage) == 0
 
+    def __getitem__(self, index):
+        if len(self._storage) == 0:
+            return None
+        return self._storage[index]
+
+    def __setitem__(self, index, value):
+        self._storage[index] = value
+
     def __len__(self) -> int:
         return len(self._storage) 
 
