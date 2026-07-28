@@ -1,3 +1,5 @@
+# /code_practice/socket_programming/bounded_fifo_queue.py
+
 from collections import deque
 import pytest
 
@@ -34,6 +36,12 @@ class BoundedQueue:
 
     def __len__(self) -> int:
         return len(self._storage) 
+
+    def __str__(self):
+        return f"_storage: {self._storage}"
+
+    def __repr__(self):
+        return self.__str__()
 
 if __name__ == "__main__":
     queue = BoundedQueue(1)
