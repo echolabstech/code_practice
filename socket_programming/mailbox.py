@@ -49,6 +49,12 @@ class Mailbox:
             raise MailboxEmptyError("No messages in this mailbox.")
         return envelope
 
+    def __iter__(self):
+        return iter(self._mailbox)
+
+    def __next__(self):
+        return next(self._mailbox)
+
 class TestMailbox(unittest.TestCase):
     def test_send_and_receive_envelope(self):
         mbox = Mailbox(capacity=5)
