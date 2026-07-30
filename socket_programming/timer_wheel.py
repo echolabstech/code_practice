@@ -9,13 +9,13 @@ class SchedulerFullError(Exception):
     pass
 
 class TimerWheel:
-    def __init__(self, num_slots: int = 12):
+    def __init__(self, num_slots:int=12, queue_capacity:int=10):
         if num_slots <= 0:
             raise ValueError("num_slots must be greater than 0")
         self.num_slots = num_slots
         self._current_slot = 0
         # Initialize num_slots distinct deques
-        self._slots = [BoundedQueue(10) for _ in range(self.num_slots)]
+        self._slots = [BoundedQueue(queue_capacity) for _ in range(self.num_slots)]
 
     def __str__(self):
         return f"_slots: {self._slots}"

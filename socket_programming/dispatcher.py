@@ -17,7 +17,7 @@ class Dispatcher:
         if event in self.subscribers and callback in self.subscribers[event]:
             self.subscribers[event].remove(callback)
 
-    def dispatch(self, event: str, message) -> list[Exception]:
+    def dispatch(self, event:str, message:str) -> list[Exception]:
         handlers = []
 
         # Collect wildcard handlers first
