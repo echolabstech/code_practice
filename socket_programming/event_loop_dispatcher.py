@@ -18,7 +18,7 @@ class EventLoopDispatcher:
             self.watched_sockets[sock] = callback
 
     def unregister(self, sock: socket.socket) -> None:
-        """Removes socket from the multiplexing watch list."""
+        """Closes and removes socket from the multiplexing watch list."""
         if sock in self.watched_sockets:
             self.watched_sockets.pop(sock)
 
